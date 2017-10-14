@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
+// import aaa from './App/DB'
+
 // #2196f5 - bg
 // #0d47a1 - bg 2
 // #082e67 - bg 3
@@ -11,7 +13,8 @@ export default class HomeScreen extends React.Component {
         title: 'Welcome'
     };
     componentDidMount() {
-        // alert(2)
+        // aaa++
+        // alert(aaa)
       }
     render() {
         return (
