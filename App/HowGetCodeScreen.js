@@ -2,9 +2,11 @@ import React from 'react'
 import { StyleSheet, Text, View, Button, Image, Platform, AsyncStorage, Dimensions, TextInput, TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-import { style, lang } from './DB'
-
 let { height, width } = Dimensions.get('window')
+
+import { style, lang } from './DB'
+import TopBar from './components/topBar'
+
 
 export default class HowGetCodeScreen extends React.Component {
 
@@ -42,19 +44,15 @@ export default class HowGetCodeScreen extends React.Component {
     render() {
         return (
             <View style={styles.root}>
-                <View style={styles.topBar}>
-                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                        <Text style={styles.topBarGoBack}>&lt;</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.topBarText}>
-                        {this.state.languageTexts.howGetCode[`${this.state.language}`]}
-                    </Text>
-                </View>
+    
+                <TopBar text={this.state.languageTexts.howGetCode[`${this.state.language}`]} t={this} showBTN={true} />
+  
                 <View style={styles.container}>
                     <Text style={styles.howGetCodeBigText}>
                         {this.state.languageTexts.howGetCodeBigText[`${this.state.language}`]}
                     </Text>
                 </View>
+
             </View>
         )
     }
@@ -66,27 +64,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#2196f5',
         paddingTop: Platform.OS === 'android' ? 25 : 0,
-    },
-    topBar: {
-        backgroundColor: style.color1,
-        flexDirection: 'row',
-        borderBottomColor: 'white',
-        borderBottomWidth: 1
-    },
-    topBarGoBack: {
-        paddingTop: style.blockPadding / 2,
-        paddingBottom: style.blockPadding / 2,
-        paddingLeft: style.blockPadding,
-        paddingRight: style.blockPadding,
-        backgroundColor: style.color2,
-        color: 'white'
-    },
-    topBarText: {
-        width: (width - (style.blockPadding * 2)),
-        backgroundColor: style.color1,
-        textAlign: 'center',
-        paddingTop: style.blockPadding / 2,
-        color: 'white'
     },
     container: {
         flex: 1,

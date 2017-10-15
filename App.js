@@ -4,11 +4,17 @@ import { StackNavigator } from 'react-navigation';
 
 import LoginScreen from './App/LoginScreen'
 import HowGetCodeScreen from './App/HowGetCodeScreen'
+import LoadDataScreen from './App/LoadDataScreen'
+import MenuScreen from './App/MenuScreen'
+import TimetableScreen from './App/TimetableScreen'
 
-const SimpleApp = StackNavigator(
+const Scholl28 = StackNavigator(
   {
-    Login: { screen: LoginScreen },
-    HowGetCode: { screen: HowGetCodeScreen },
+    // Login: { screen: LoginScreen },
+    // HowGetCode: { screen: HowGetCodeScreen },
+    // LoadData: { screen: LoadDataScreen },
+    // Menu: { screen: MenuScreen },
+    Timetable: { screen: TimetableScreen}
   },
   {
     headerMode: 'none'
@@ -17,6 +23,6 @@ const SimpleApp = StackNavigator(
 
 export default class App extends React.Component {
   render() {
-    return <SimpleApp />;
+    return <Scholl28 />;
   }
 }

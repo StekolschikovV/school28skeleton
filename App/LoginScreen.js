@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Image, Platform, AsyncStorage, Dimensions, TextInput, TouchableOpacity } from 'react-native'
+import { NetInfo, StyleSheet, Text, View, Button, Image, Platform, AsyncStorage, Dimensions, TextInput, TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import { style } from './DB'
@@ -37,7 +37,13 @@ export default class LoginScreen extends React.Component {
                     RU: 'Войти',
                     UA: 'Увійти',
                     EN: 'Enter',
-                }
+                },
+                codeEmpty: {
+                    RU: 'Введите код!',
+                    UA: 'Введіть код!',
+                    EN: 'Enter code!',
+                },
+                inputValue: ''
             }
         }
     }
@@ -119,9 +125,10 @@ export default class LoginScreen extends React.Component {
                                 style={styles.studentsCodeInput}
                                 underlineColorAndroid='rgba(0,0,0,0)'
                                 ref={input => { this.input = input }}
+                                onChangeText={(event) => { this.setState({ inputValue: event }) }}
                             />
                         </View>
-                        <TouchableOpacity style={styles.btn} >
+                        <TouchableOpacity style={styles.btn} onPress={() => { this.verification() }} >
                             <Text style={styles.btnText} >
                                 {this.state.languageTexts.enter[`${this.state.language}`]}
                             </Text>
@@ -138,9 +145,16 @@ export default class LoginScreen extends React.Component {
         );
     }
 
+    verification() {
+        if(this.state.inputValue){
+            AsyncStorage.setItem('key', this.state.inputValue)
+            this.props.navigation.navigate('LoadData')
+        } else {
+            alert(this.state.languageTexts.codeEmpty[`${this.state.language}`])
+        }
+    }
+
 }
-
-
 
 const styles = StyleSheet.create({
     root: {

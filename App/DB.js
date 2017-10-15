@@ -14,6 +14,21 @@ let lang = {
         RU: 'Для получения кода обратитесь к старосте класс или классному руководителю.',
         UA: 'Для отримання коду зверніться до старості клас або класному керівнику.',
         EN: 'To get the code, contact the head of the class or the class teacher.',
+    },
+    сheckingСonnection: {
+        RU: 'Проверка соединения: ',
+        UA: 'Перевірка з\'єднання:',
+        EN: 'Checking connection: ',
+    },
+    сheckingCode: {
+        RU: 'Проверка кода: ',
+        UA: 'Перевірка коду:',
+        EN: 'Checking code: ',
+    },
+    getData: {
+        RU: 'Получение данных: ',
+        UA: 'Отримання даних:',
+        EN: 'Receiving data: ',
     }
 }
 
