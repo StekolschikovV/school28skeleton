@@ -1,17 +1,50 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, Image, Platform, AsyncStorage } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import React from 'react'
+import { StyleSheet, Text, View, Button, Image, Platform, AsyncStorage, Dimensions, TextInput, TouchableOpacity } from 'react-native'
+import { StackNavigator } from 'react-navigation'
+
+import { style } from './DB'
+
+let { height, width } = Dimensions.get('window')
+
+// import HowGetCodeScreen from './HowGwtCodeScreen'
 
 export default class LoginScreen extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            language: ''
+            language: '',
+            languageTexts: {
+                bottom: {
+                    RU: 'У меня нет кода',
+                    UA: 'У мене немає коду',
+                    EN: 'I do not have code',
+                },
+                schoolH0: {
+                    RU: 'Школа 28',
+                    UA: 'Школа 28',
+                    EN: 'School 28',
+                },
+                lisichanskl: {
+                    RU: 'Лисичанськ',
+                    UA: 'Лисичанськ',
+                    EN: 'Lisichansk',
+                },
+                studentsCode: {
+                    RU: 'Код ученика: ',
+                    UA: 'Код учня: ',
+                    EN: 'Student\'s code: ',
+                },
+                enter: {
+                    RU: 'Войти',
+                    UA: 'Увійти',
+                    EN: 'Enter',
+                }
+            }
         }
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         AsyncStorage.getItem('language')
             .then(res => {
                 if (res == null) {
@@ -25,6 +58,7 @@ export default class LoginScreen extends React.Component {
                     })
                 }
             })
+        this.input.focus()
     }
 
     render() {
@@ -33,6 +67,7 @@ export default class LoginScreen extends React.Component {
                 <Image
                     source={require('../img/log-bg.jpg')}
                     style={styles.container}>
+
                     <View style={styles.top}>
                         <Text
                             style={this.state.language == 'RU' ? styles.topElSelect : styles.topEl}
@@ -67,6 +102,39 @@ export default class LoginScreen extends React.Component {
                         >
                             EN</Text>
                     </View>
+
+                    <View style={styles.school}>
+                        <Text style={styles.h0}>
+                            {this.state.languageTexts.schoolH0[`${this.state.language}`]}
+                        </Text>
+                        <Text style={styles.h1}>
+                            {this.state.languageTexts.lisichanskl[`${this.state.language}`]}
+                        </Text>
+                    </View>
+
+                    <View style={styles.login}>
+                        <View style={styles.loginTop}>
+                            <Text style={styles.studentsCode}>
+                                {this.state.languageTexts.studentsCode[`${this.state.language}`]}
+                            </Text>
+                            <TextInput
+                                style={styles.studentsCodeInput}
+                                underlineColorAndroid='rgba(0,0,0,0)'
+                                ref={input => { this.input = input }}
+                            />
+                        </View>
+                        <TouchableOpacity style={styles.btn} >
+                            <Text style={styles.btnText} >
+                                {this.state.languageTexts.enter[`${this.state.language}`]}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.bottom} >
+                        <Text style={styles.bottomText} onPress={() => this.props.navigation.navigate('HowGetCode')}>
+                            {this.state.languageTexts.bottom[`${this.state.language}`]}
+                        </Text>
+                    </View>
                 </Image>
             </View>
         );
@@ -92,7 +160,7 @@ const styles = StyleSheet.create({
     },
     top: {
         position: 'absolute',
-        top: 5,
+        top: style.blockPadding,
         flexDirection: 'row'
     },
     topEl: {
@@ -100,6 +168,60 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     topElSelect: {
+        color: 'white',
+        fontSize: 12,
+        borderBottomColor: 'white',
+        borderBottomWidth: 1
+    },
+    school: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    h0: {
+        fontSize: style.h0Size,
+        color: 'white'
+    },
+    h1: {
+        fontSize: style.h1Size,
+        color: 'white'
+    },
+    login: {
+        flex: 1,
+        justifyContent: 'flex-start',
+    },
+    loginTop: {
+        borderBottomColor: 'white',
+        width: (width - (style.blockPadding * 2)),
+        borderBottomWidth: 1,
+        flexDirection: 'row',
+        paddingBottom: (style.blockPadding / 2),
+    },
+    studentsCode: {
+        width: 100,
+        textAlign: 'center',
+        color: 'white',
+        fontSize: style.h2Size,
+    },
+    studentsCodeInput: {
+        width: ((width - (style.blockPadding * 2)) - 100),
+        color: 'white',
+    },
+    btn: {
+        backgroundColor: style.color2,
+        padding: (style.blockPadding / 2),
+        marginTop: (style.blockPadding / 2),
+        alignItems: 'center',
+    },
+    btnText: {
+        color: 'white',
+        fontSize: style.h2Size
+    },
+    bottom: {
+        position: 'absolute',
+        bottom: style.blockPadding,
+    },
+    bottomText: {
         color: 'white',
         fontSize: 12,
         borderBottomColor: 'white',
