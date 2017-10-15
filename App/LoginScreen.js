@@ -6,8 +6,6 @@ import { style } from './DB'
 
 let { height, width } = Dimensions.get('window')
 
-// import HowGetCodeScreen from './HowGwtCodeScreen'
-
 export default class LoginScreen extends React.Component {
 
     constructor(props) {

@@ -9,4 +9,12 @@ let style = {
     h3Size: 9,
 }
 
-export {style}
+let lang = {
+    howToGetTheCodeBigText: {
+        RU: 'Для получения кода обратитесь к старосте класс или классному руководителю.',
+        UA: 'Для отримання коду зверніться до старості клас або класному керівнику.',
+        EN: 'To get the code, contact the head of the class or the class teacher.',
+    }
+}
+
+export {style, lang}

@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Button, Image, Platform, AsyncStorage, Dimensions, TextInput, TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-import { style } from './DB'
+import { style, lang } from './DB'
 
 let { height, width } = Dimensions.get('window')
 
@@ -13,11 +13,12 @@ export default class HowGetCodeScreen extends React.Component {
         this.state = {
             language: '',
             languageTexts: {
-                howGetCode:{
+                howGetCode: {
                     RU: 'Как получить код?',
                     UA: 'Як отримати код?',
                     EN: 'How to get the code?',
-                }
+                },
+                howGetCodeBigText: lang.howToGetTheCodeBigText
             }
         }
     }
@@ -50,7 +51,9 @@ export default class HowGetCodeScreen extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.container}>
-                    <Text>ffff2</Text>
+                    <Text style={styles.howGetCodeBigText}>
+                        {this.state.languageTexts.howGetCodeBigText[`${this.state.language}`]}
+                    </Text>
                 </View>
             </View>
         )
@@ -88,5 +91,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
+    howGetCodeBigText: {
+        color: 'white',
+        padding: style.blockPadding
+    }
 });
