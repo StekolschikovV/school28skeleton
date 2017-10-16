@@ -54,6 +54,7 @@ export default class MenuScreen extends React.Component {
     }
 
     componentDidMount() {
+
         AsyncStorage.getItem('language')
             .then(res => {
                 if (res == null) {
@@ -67,13 +68,7 @@ export default class MenuScreen extends React.Component {
                     })
                 }
             })
-
-        AsyncStorage.getItem('data')
-            .then(res => {
-                this.setState({
-                    data: JSON.parse(res)
-                })
-            })
+            
     }
 
     render() {
@@ -86,29 +81,29 @@ export default class MenuScreen extends React.Component {
 
                     <View style={styles.containerInner}>
 
-                        <View style={styles.el}>
+                        <TouchableOpacity style={styles.el} onPress={() => this.props.navigation.navigate('Timetable')}>
                             <Text style={styles.containerInnerText}>
                                 {this.state.languageTexts.timetable[`${this.state.language}`]}
                             </Text>
-                        </View>
+                        </TouchableOpacity>
                         
-                        <View style={styles.el}>
+                        <TouchableOpacity style={styles.el}>
                             <Text style={styles.containerInnerText}>
                                 {this.state.languageTexts.estimates[`${this.state.language}`]}
                             </Text>
-                        </View>
+                        </TouchableOpacity>
 
-                        <View style={styles.el}>
+                        <TouchableOpacity style={styles.el} onPress={() => this.props.navigation.navigate('Teachers')}>
                             <Text style={styles.containerInnerText}>
                                 {this.state.languageTexts.teachers[`${this.state.language}`]}
                             </Text>
-                        </View>
+                        </TouchableOpacity>
 
-                        <View style={styles.el}>
+                        <TouchableOpacity style={styles.el}  onPress={() => this.props.navigation.navigate('Classmates')}>
                             <Text style={styles.containerInnerText}>
                                 {this.state.languageTexts.classmates[`${this.state.language}`]}
                             </Text>
-                        </View>
+                        </TouchableOpacity>
 
                         <View style={styles.el}>
                             <Text style={styles.containerInnerText}>

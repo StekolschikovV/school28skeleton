@@ -144,7 +144,7 @@ export default class LoginScreen extends React.Component {
             </View>
         );
     }
-
+    
     verification() {
         if(this.state.inputValue){
             AsyncStorage.setItem('key', this.state.inputValue)

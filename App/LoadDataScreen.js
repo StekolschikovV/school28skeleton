@@ -48,10 +48,7 @@ export default class LoadDataScreen extends React.Component {
         return (
             <View style={styles.root}>
                 <View style={styles.top}>
-                    <Image
-                        style={styles.preloader}
-                        source={require('../img/preloader.gif')}
-                    />
+                    <Image style={styles.preloader} source={require('../img/preloader.gif')} />
                 </View>
                 <View style={styles.bottom}>
                     <Text style={styles.text}>{this.state.languageTexts.сheckingСonnection[`${this.state.language}`]} {this.state.connection}</Text>
@@ -80,7 +77,8 @@ export default class LoadDataScreen extends React.Component {
                     enterdKeyInInput: res
                 })
                 if (res !== null) {
-                    fetch('http://stekolschikov.info/programs/28/get.php')
+                    // fetch('http://stekolschikov.info/programs/28/get.php')
+                    fetch('http://shool28.000webhostapp.com/get.php')
                         .then((response) => response.json())
                         .then((responseJson) => {
                             this.setState({
@@ -100,17 +98,20 @@ export default class LoadDataScreen extends React.Component {
 
     validator() {
         let valid = false
+        let user = ''
         for (let i = 0; i < this.state.res.users.length; i++) {
             if (this.state.res.users[i].id == this.state.enterdKeyInInput) {
                 valid = true
+                user = this.state.res.users[i]
             }
         }
         if (valid) {
-            console.log(valid)
             this.setState({
                 code: 'true'
             })
             AsyncStorage.setItem('data', JSON.stringify(this.state.res))
+            AsyncStorage.setItem('user', JSON.stringify(user))
+            AsyncStorage.setItem('class', JSON.stringify(this.state.res.timetable[user.class]))
             this.props.navigation.navigate('Menu')
         } else {
             this.setState({

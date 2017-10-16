@@ -7,14 +7,18 @@ import HowGetCodeScreen from './App/HowGetCodeScreen'
 import LoadDataScreen from './App/LoadDataScreen'
 import MenuScreen from './App/MenuScreen'
 import TimetableScreen from './App/TimetableScreen'
+import TeachersScreen from './App/TeachersScreen'
+import ClassmatesScreen from './App/ClassmatesScreen'
 
 const Scholl28 = StackNavigator(
   {
-    // Login: { screen: LoginScreen },
-    // HowGetCode: { screen: HowGetCodeScreen },
-    // LoadData: { screen: LoadDataScreen },
-    // Menu: { screen: MenuScreen },
-    Timetable: { screen: TimetableScreen}
+    Login: { screen: LoginScreen },
+    HowGetCode: { screen: HowGetCodeScreen },
+    LoadData: { screen: LoadDataScreen },
+    Menu: { screen: MenuScreen },
+    Timetable: { screen: TimetableScreen},
+    Teachers: { screen: TeachersScreen},
+    Classmates: { screen: ClassmatesScreen},
   },
   {
     headerMode: 'none'
@@ -26,3 +30,5 @@ export default class App extends React.Component {
     return <Scholl28 />;
   }
 }
+
+// TODO: Fix title topBar
