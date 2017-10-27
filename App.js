@@ -9,6 +9,7 @@ import MenuScreen from './App/MenuScreen'
 import TimetableScreen from './App/TimetableScreen'
 import TeachersScreen from './App/TeachersScreen'
 import ClassmatesScreen from './App/ClassmatesScreen'
+import EstimatesScreen from './App/EstimatesScreen'
 
 const Scholl28 = StackNavigator(
   {
@@ -19,6 +20,7 @@ const Scholl28 = StackNavigator(
     Timetable: { screen: TimetableScreen},
     Teachers: { screen: TeachersScreen},
     Classmates: { screen: ClassmatesScreen},
+    // Estimates: { screen: EstimatesScreen},
   },
   {
     headerMode: 'none'

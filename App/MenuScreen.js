@@ -87,7 +87,7 @@ export default class MenuScreen extends React.Component {
                             </Text>
                         </TouchableOpacity>
                         
-                        <TouchableOpacity style={styles.el}>
+                        <TouchableOpacity style={styles.el} onPress={() => this.props.navigation.navigate('Estimates')}>
                             <Text style={styles.containerInnerText}>
                                 {this.state.languageTexts.estimates[`${this.state.language}`]}
                             </Text>
